@@ -1,3 +1,13 @@
 spring:
   application:
     name: postal-code-consultation-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cepdb
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
