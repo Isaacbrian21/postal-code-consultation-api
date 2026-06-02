@@ -1,6 +1,7 @@
 spring:
   application:
     name: postal-code-consultation-api
+
   datasource:
     url: jdbc:postgresql://localhost:5432/cepdb
     username: postgres
@@ -9,5 +10,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
     show-sql: true
+
+external:
+  viacep:
+#    WireMock
+#    url: http://localhost:8089/ws
+#    External API
+    url: https://viacep.com.br/ws
+
