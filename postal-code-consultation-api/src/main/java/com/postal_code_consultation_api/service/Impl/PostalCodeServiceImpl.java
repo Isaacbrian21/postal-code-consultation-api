@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.postal_code_consultation_api.client.ViaCepClient;
 import com.postal_code_consultation_api.dto.ViaCepResponse;
 import com.postal_code_consultation_api.entity.ConsultationLog;
+import com.postal_code_consultation_api.exception.InvalidCepException;
 import com.postal_code_consultation_api.repository.ConsultationLogRepository;
 import com.postal_code_consultation_api.service.PostalCodeService;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,20 @@ public class PostalCodeServiceImpl implements PostalCodeService {
     public ViaCepResponse searchCep(String cep)
             throws JsonProcessingException {
 
+        if (!cep.matches("\\d{8}")) {
+
+            throw new InvalidCepException(
+                    "CEP deve conter exatamente 8 dígitos");
+        }
+
         ViaCepResponse response =
                 viaCepClient.search(cep);
+
+        if (Boolean.TRUE.equals(response.erro())) {
+
+            throw new InvalidCepException(
+                    "CEP não encontrado: " + cep);
+        }
 
         ConsultationLog log =
                 ConsultationLog.builder()
