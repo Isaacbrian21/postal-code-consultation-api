@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/ws/01310100/json"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "cep": "01310-100",
+      "logradouro": "RUA TESTE WIREMOCK",
+      "bairro": "Bela Vista",
+      "localidade": "São Paulo",
+      "uf": "SP"
+}
+  }
+}
